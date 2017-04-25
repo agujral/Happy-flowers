@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=page-width, initial-scale=1.0">
+   <title>Happy Flowers - Order</title>
+   <link rel="stylesheet" href="happy.css" />
+   <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+   
+   
+<script>
+
+function myFunction(f) {
+
+var fname = document.getElementById("firstname").value;
+var lname = document.getElementById("lastname").value;
+var add = document.getElementById("streetaddress").value;
+var city = document.getElementById("city").value;
+var zip = document.getElementById("zip").value;
+var phone = document.getElementById("phone").value;
+
+var c1 = document.getElementById("c1");
+var c2 = document.getElementById("c2");
+var c3 = document.getElementById("c3");
+var c4 = document.getElementById("c4");
+var c5 = document.getElementById("c5");
+
+var s = document.getElementById("state").value;
+
+var dc1 = document.getElementById("dc1");
+
+var rc1 = document.getElementById("rc1");
+var rc2 = document.getElementById("rc2");
+var rc3 = document.getElementById("rc3");
+var rc4 = document.getElementById("rc4");
+
+var card = document.getElementById("Card").value;
+var cvv = document.getElementById("CVV").value;
+var exmonth = document.getElementById("exmonth").value;
+var exyear = document.getElementById("exyear").value;
+
+var user = document.getElementById("Username").value;
+var password = document.getElementById("Password").value;
+var passwordverify = document.getElementById("Password(verify)").value;
+
+    if (fname == null || fname == "") {
+        alert("First Name must be filled out");
+        return false;
+    }
+	else if (lname == null || lname == "") {
+        alert("Last Name must be filled out");
+        return false;
+    }
+	
+	
+	else if (add == null || add == "") {
+        alert("Street Address must be filled out");
+        return false;
+    }
+	else if (city == null || city == "") {
+        alert("City must be filled out");
+        return false;
+    }
+	
+    else if (zip == null || zip == "") {
+        alert("Please enter the Zip");
+        return false;
+    }
+	else if (isNaN(zip)) {
+        alert("Please enter a valid zip");
+        return false;
+    }
+	
+    if (phone == null || phone == "") {
+        alert("Please enter a valid phone");
+        return false;
+    }
+	else if (isNaN(phone)) {
+        alert("Please enter a valid phone");
+        return false;
+    }
+	
+	else if (!c1.checked && !c2.checked && !c3.checked && !c4.checked && !c5.checked) 
+	{
+		alert ('Please choose any message!');
+		return false;
+	} 
+	else if(c5.checked)
+	{
+	var message = "Enter custom message here (max 250 characters)"
+	if((document.getElementById("cm1").value == "") || (document.getElementById("cm1").value !== message && document.getElementById("cm1").value == "") || (document.getElementById("cm1").value == message))
+		{
+			alert ('Please enter the custom message');
+			return false;
+		}
+	}
+	else if (s == "") 
+	{
+		alert ('Please choose a state');
+		return false;
+	} 
+	
+	
+	else if (dc1.checked)
+	{
+		document.getElementById("delfirstname").value = fname;
+		document.getElementById("dellastname").value = lname;
+		document.getElementById("delstreetaddress").value = add;
+		document.getElementById("delcity").value = city;
+		document.getElementById("delzip").value = zip;
+		document.getElementById("delphone").value = phone;
+		document.getElementById("delstate").value = s;
+		
+	}
+	
+	else if (!dc1.checked)
+	{
+	
+		var delfname = document.getElementById("delfirstname").value;
+		var dellname = document.getElementById("dellastname").value;
+		var deladd = document.getElementById("delstreetaddress").value;
+		var delcity = document.getElementById("delcity").value;
+		var delzip = document.getElementById("delzip").value;
+		var delphone = document.getElementById("delphone").value;
+		var delstate = document.getElementById("delstate").value;
+	
+		if (delfname == null || delfname == "") 
+		{
+			alert("First Name must be filled out in the delivery address");
+			return false;
+		}
+		if (dellname == null || dellname == "") 
+		{
+			alert("Last Name must be filled out in the delivery address");
+			return false;
+		}
+		if (deladd == null || deladd == "") 
+		{
+			alert("Street address must be filled out in the delivery address");
+			return false;
+		}
+		if (delcity == null || delcity == "") 
+		{
+			alert("City must be filled out in the delivery address");
+			return false;
+		}
+		if (delzip == null || delzip == "") 
+		{
+			alert("Please fill the zip in the delivery address");
+			return false;
+		}
+		if (isNaN(delzip)) 
+		{
+        alert("Please enter a valid zip");
+        return false;
+		}
+	
+		if (delphone == null || delphone == "") 
+		{
+			alert("Please fill the phone in the delivery address");
+			return false;
+		}
+		if (isNaN(delphone)) 
+		{
+        alert("Please enter a valid phone");
+        return false;
+		}
+		
+		if (delstate == "") 
+		{
+			alert("Please choose state in the delivery address");
+			return false;
+		}
+	}
+	
+	
+var month = document.getElementById("month").value;
+var day = document.getElementById("day").value;
+var year = document.getElementById("year").value;
+
+	if ((month == "") || (day == "") || (year == ""))
+	{
+		alert("Please choose the delivery date");
+		return false;
+	}
+	
+	else if(year % 400 == "0" || (year % 100 != "0" && year % 4 == "0"))
+	{
+		if((month == "4")|| (month == "6") || (month == "9") || (month == "11"))
+		{
+			if(day == "31")
+			{	
+				alert("Please choose correct day");
+				return false;
+			}
+		}
+		else if(month == "2")
+		{
+			if(day > "29")
+			{	
+				alert("Please choose correct day");
+				return false;
+			}
+		
+		}
+				
+	}
+	
+	else if(year % 400 != 0 )
+	{	
+		if((month == 4) || (month == 6) || (month == 9) || (month == 11))
+		{
+			if(day == 31)
+			{	
+				alert("Please choose correct day");
+				return false;
+			}
+		}
+		else if(month == 2)
+		{
+			if(day > 28)
+			{	
+				alert("Please choose correct day");
+				return false;
+			}
+		
+		}
+	
+	}
+	
+	if (!rc1.checked && !rc2.checked && !rc3.checked && !rc4.checked) 
+	{
+		alert ('Please choose card type!');
+		return false;
+	} 
+	else if (card == null || card == "") 
+	{
+        alert("Please enter card number");
+        return false;
+    }
+	else if (isNaN(card)) 
+	{
+        alert("Please enter a valid card");
+        return false;
+    }
+	else if (cvv == null || cvv == "") 
+	{
+        alert("Please enter CVV");
+        return false;
+    }
+	else if (isNaN(cvv)) {
+        alert("Please enter a valid cvv");
+        return false;
+    }
+	else if ((exmonth == "") || (exyear == ""))
+	{
+		alert("Please choose the card expiration");
+		return false;
+	}
+	
+	if (user == null || user == "") 
+	{
+        alert("Please enter username");
+        return false;
+    }
+	else if (password == null || password == "") 
+	{
+        alert("Please enter your password");
+        return false;
+    }
+	
+	if (passwordverify == null || passwordverify == "") 
+	{
+        alert("Please verify your password");
+        return false;
+    }
+	else if (password != passwordverify) 
+	{
+        alert("Password is not verified, please renter your password");
+        return false;
+    }
+	
+
+ 
+}
+
+function Getdetail(f) {
+  if(f.delivery.checked == true) 
+  {
+    f.delfirstname.value = f.firstname.value;
+	f.dellastname.value = f.lastname.value;
+	f.delcity.value = f.city.value;
+	f.delzip.value = f.zip.value;
+	f.delstreetaddress.value = f.streetaddress.value;
+	f.delphone.value = f.phone.value;
+	f.delstate.value = f.state.value;
+  }
+  else
+  {
+	f.delfirstname.value = "";
+	f.dellastname.value = "";
+	f.delcity.value = "";
+	f.delzip.value = "";
+	f.delstreetaddress.value = "";
+	f.delphone.value = "";
+	f.delstate.value = "";
+  
+  }
+}
+
+function submitpage(f)
+{
+
+var fname = document.getElementById("firstname").value;
+var lname = document.getElementById("lastname").value;
+var add = document.getElementById("streetaddress").value;
+var city = document.getElementById("city").value;
+var s = document.getElementById("state").value;
+var zip = document.getElementById("zip").value;
+var phone = document.getElementById("phone").value;
+
+var delivcheck = document.getElementById("dc1").value;
+
+var delfname = document.getElementById("delfirstname").value;
+var dellname = document.getElementById("dellastname").value;
+var delivadd = document.getElementById("delstreetaddress").value;
+var delcity = document.getElementById("delcity").value;
+var delzip = document.getElementById("delzip").value;
+var delphone = document.getElementById("delphone").value;
+var delstate = document.getElementById("delstate").value;
+
+var month = document.getElementById("month").value;
+var day = document.getElementById("day").value;
+var year = document.getElementById("year").value;
+
+var card = document.getElementById("Card").value;
+var cvv = document.getElementById("CVV").value;
+var exmonth = document.getElementById("exmonth").value;
+var exyear = document.getElementById("exyear").value;
+
+var user = document.getElementById("Username").value;
+
+var c1 = document.getElementById("c1");
+var c2 = document.getElementById("c2");
+var c3 = document.getElementById("c3");
+var c4 = document.getElementById("c4");
+var c5 = document.getElementById("c5");
+
+//var dc1 = document.getElementById("dc1");
+
+if (c1.checked) 
+{
+	var outputmessage = document.getElementById("c1").value;
+} 
+if(c2.checked)
+{
+	var outputmessage = document.getElementById("c2").value;
+} 
+if(c3.checked)
+{
+	var outputmessage = document.getElementById("c3").value;
+} 
+if(c4.checked)
+{
+	var outputmessage = document.getElementById("c4").value;
+}
+if(c5.checked)
+{
+	var outputmessage = document.getElementById("cm1").value;
+} 
+
+var rc1 = document.getElementById("rc1");
+var rc2 = document.getElementById("rc2");
+var rc3 = document.getElementById("rc3");
+var rc4 = document.getElementById("rc4");
+
+if (rc1.checked) 
+{
+	var paymentType = "Visa";
+} 
+if(rc2.checked)
+{
+	var paymentType = "Master Card";
+} 
+if(rc3.checked)
+{
+	var paymentType = "Discover";
+} 
+if(rc4.checked)
+{
+	var paymentType = "American Express";
+}
+
+
+
+var h2 = document.getElementById("idh2");
+h2.innerText = "Your form has been submitted";
+
+formfield = document.getElementById("myform");
+
+m = document.getElementById("message");
+billadd = document.getElementById("billingAddress");
+deladd = document.getElementById("deliveryAddress");
+deldate = document.getElementById("deliveryDate");
+payinfo = document.getElementById("paymentInfo");
+caccount = document.getElementById("createAccount");
+buttoncont = document.getElementById("buttonContainer");
+
+formfield.removeChild(m);
+formfield.removeChild(billadd);
+formfield.removeChild(deladd);
+formfield.removeChild(deldate);
+formfield.removeChild(payinfo);
+formfield.removeChild(caccount);
+formfield.removeChild(buttoncont);
+
+var newfield = document.createElement("fieldset");
+newfield.class = "text";
+	
+var subheading = document.createElement("subheading");
+subheading.innerText = "You entered the following data :";
+subheading.style.fontWeight = "bold";
+
+newfield.appendChild(subheading);
+
+formfield.appendChild(newfield);
+
+var outputform = document.createElement("p");
+newfield.appendChild(outputform);
+
+
+
+
+outputform.innerHTML = "<pre>" + outputmessage + "\nBillingFirstName = " + fname + "\nBillingLastName = " + lname + "\nBillingStreet = " + add + 
+                                  "\nBillingCity = " + city + "\nBillingState = " + s + "\nBillingZip = " + zip + "\nBillingPhone = " + phone +  "\nSameAddress = " + delivcheck + "\nDeliveryFirstName = " + delfname + 
+								  "\nDeliveryLastName = " + dellname + "\nDeliveryStreet = " + delivadd + "\nDeliveryCity = " + delcity + "\nDeliveryState = " + delstate + "\nDeliveryZip = " + delzip + "\nDeliveryPhone = " + delphone +
+								  "\nDelivMonth = " + month + "\nDelivDay = " + day + "\nDelivYear = " + year + "\nPaymentType = " + paymentType +
+								  "\nCardNumber = " + card + "\nExpMonth = " + exmonth + "\nExpYear = " + exyear + "\nCVVValue = " + cvv +
+								  "\nNewUsername = " + user + "\nPassword1 = " + "\nPassword2 = " + "</pre>";
+
+
+
+}
+
+
+
+</script>
+</head>
+
+<body>
+   <div class="container">
+      <header>
+         <h1>
+            Happy Flowers
+         </h1>
+      </header>
+
+      <nav>
+         <ul>
+            <li><a href="#">Floral Arrangements</a></li>
+            <li><a href="#">Seasonal Bouquets</a></li>
+            <li><a href="#">Live Plants</a></li>
+            <li><a href="#">Shop by Price</a></li>
+         </ul>
+      </nav>
+   </div>
+
+   <article>
+      <h2 id="idh2">Place an Order</h2>
+      <div id="errorText"></div>
+      <form id="myform" action="javascript: submitpage(this.form)" onsubmit="return myFunction(this.form);">
+         <fieldset id="message" class="checks">
+			<legend>Message</legend>
+				<input type="checkbox" id="c1" value="Congratulations">
+				<label for="c1">Congratulations!</label>
+				<input type="checkbox" id="c2" value="Happy Birthday">
+				<label for="c2">Happy Birthday!</label>
+				<input type="checkbox" id="c3" value="Happy Anniversary">
+				<label for="c3">Happy Anniversary!</label>
+				<input type="checkbox" id="c4" value="I love you!">
+				<label for="c4">I love you!</label>
+				<input type="checkbox" id="c5">
+				<label for="c5">Custom message</label>
+				<textarea name="custom_message" id ="cm1" maxlength=250>Enter custom message here (max 250 characters)</textarea>
+
+          </fieldset>
+         <fieldset id="billingAddress" class="text">
+			<legend>Billing Address</legend>
+				<label for="firstname">First name</label> 
+				<input type="text" name="firstname" id="firstname" autofocus>
+				<label for="lastname">Last name</label> 
+				<input type="text" name="lastname" id="lastname">
+				<label for="streetaddress">Street Address</label> 
+				<input type="text" name="streetaddress" id="streetaddress">
+				<label for="city">City</label> 
+				<input type="text" name="city" id="city">
+				<label for="state">State</label> 
+				<select id="state"> 
+				<option value="">select</option>
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AR">AR</option>
+					<option value="AZ">AZ</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="IA">IA</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="MA">MA</option>
+					<option value="MD">MD</option>
+					<option value="ME">ME</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MO">MO</option>
+					<option value="MS">MS</option>
+					<option value="MT">MT</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="NE">NE</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NV">NV</option>
+					<option value="NY">NY</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WI">WI</option>
+					<option value="WV">WV</option>
+					<option value="WY">WY</option>
+				</select>
+				<label for="zip">Zip</label> 
+				<input type="text" name="zip" id="zip">
+				<label for="phone">Phone</label> 
+				<input type="text" name="phone" id="phone">
+         </fieldset>
+         <fieldset id="deliveryAddress" class="text">
+				<legend>Delivery Address</legend>
+				<div class="checks">
+				<input type="checkbox" name="delivery" id="dc1" onclick="Getdetail(this.form)">
+				<label for="dc1">same as billing address</label>
+				</div>
+				<label for="delfirstname">First name</label> 
+				<input type="text" name="delfirstname" id="delfirstname" autofocus>
+				<label for="dellastname">Last name</label> 
+				<input type="text" name="dellastname" id="dellastname">
+				<label for="delstreetaddress">Street Address</label> 
+				<input type="text" name="delstreetaddress" id="delstreetaddress">
+				<label for="delcity">City</label> 
+				<input type="text" name="delcity" id="delcity">
+				<label for="delstate">State</label> 
+				<select id="delstate">    
+				<option value="">select</option>
+					<option value="AL">AL</option>
+					<option value="AK">AK</option>
+					<option value="AR">AR</option>
+					<option value="AZ">AZ</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DC">DC</option>
+					<option value="DE">DE</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="IA">IA</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="MA">MA</option>
+					<option value="MD">MD</option>
+					<option value="ME">ME</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MO">MO</option>
+					<option value="MS">MS</option>
+					<option value="MT">MT</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="NE">NE</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NV">NV</option>
+					<option value="NY">NY</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WI">WI</option>
+					<option value="WV">WV</option>
+					<option value="WY">WY</option>
+				</select>
+				<label for="delzip">Zip</label> 
+				<input type="text" name="delzip" id="delzip">
+				<label for="delphone">Phone</label> 
+				<input type="text" name="delphone" id="delphone">
+				
+         </fieldset>
+         <fieldset id="deliveryDate" class="checks">
+			<legend>Delivery Date</legend>
+				<div style="display:block;">
+					<select id="month"> 
+						<option value="">select</option>
+						<option value="1">January</option>       
+						<option value="2">February</option>       
+						<option value="3">March</option>       
+						<option value="4">April</option>       
+						<option value="5">May</option>       
+						<option value="6">June</option>       
+						<option value="7">July</option>       
+						<option value="8">August</option>       
+						<option value="9">September</option>       
+						<option value="10">October</option>       
+						<option value="11">November</option>       
+						<option value="12">December</option>  
+					</select>
+					<select id="day"> 
+						<option value="">select</option>
+						<option value="1">1</option>       
+						<option value="2">2</option>       
+						<option value="3">3</option>       
+						<option value="4">4</option>       
+						<option value="5">5</option>       
+						<option value="6">6</option>       
+						<option value="7">7</option>       
+						<option value="8">8</option>       
+						<option value="9">9</option>       
+						<option value="10">10</option>       
+						<option value="11">11</option>       
+						<option value="12">12</option>       
+						<option value="13">13</option>       
+						<option value="14">14</option>       
+						<option value="15">15</option>       
+						<option value="16">16</option>       
+						<option value="17">17</option>       
+						<option value="18">18</option>       
+						<option value="19">19</option>       
+						<option value="20">20</option>       
+						<option value="21">21</option>       
+						<option value="22">22</option>       
+						<option value="23">23</option>       
+						<option value="24">24</option>       
+						<option value="25">25</option>       
+						<option value="26">26</option>       
+						<option value="27">27</option>       
+						<option value="28">28</option>       
+						<option value="29">29</option>       
+						<option value="30">30</option>       
+						<option value="31">31</option>       
+					</select>
+					<select id = "year"> 
+						<option value="">select</option>
+						<option value="2017">2017</option>       
+						<option value="2018">2018</option> 
+					</select>
+				</div>
+         </fieldset>
+         <fieldset id="paymentInfo" class="text">
+			<legend>Payment</legend>
+				<div class="inline">
+				<input type="radio" name="cardtype" id = "rc1">
+				<label for="rc1">Visa</label>
+				<input type="radio" name="cardtype" id = "rc2">
+				<label for="rc2">Master Card</label>
+				<input type="radio" name="cardtype" id = "rc3">
+				<label for="rc3">Discover</label>
+				<input type="radio" name="cardtype" id = "rc4">
+				<label for="rc4">American Express</label>
+				</div>
+				<label for="Card">Card #</label> 
+				<input type="text" name="Card" id="Card" autofocus>
+				<label for="Expiration">Expiration</label> 
+				<div style="display:block;">
+					<select id="exmonth">  
+						<option value="">select</option>
+						<option>01</option>       
+						<option>02</option>       
+						<option>03</option>       
+						<option>04</option>       
+						<option>05</option>       
+						<option>06</option>       
+						<option>07</option>       
+						<option>08</option>       
+						<option>09</option>       
+						<option>10</option>       
+						<option>11</option>       
+						<option>12</option>  
+					</select>
+					<select id="exyear">
+						<option value="">select</option>
+						<option>2017</option>       
+						<option>2018</option> 
+					</select>
+				</div>
+				<label for="CVV">CVV</label> 
+				<input type="text" name="CVV" id="CVV" autofocus>
+         </fieldset>
+         <fieldset id="createAccount" class="text">
+			<legend>Create Account?</legend>
+			<p> To be able to access your purchase history and make changes to your order,<br>
+			    enter a name and password to create an account. </p>
+				<label for="Username">Username</label> 
+				<input type="text" name="Username" id="Username" autofocus>
+				<label for="Password">Password</label> 
+				<input type="text" name="Password" id="Password" autofocus>
+				<label for="Password(verify)">Password (verify)</label> 
+				<input type="text" name="Password(verify)" id="Password(verify)" autofocus>
+
+         </fieldset>
+         <div id="buttonContainer">
+			<input type="submit"  value="Place Order" id="orderButton"/>
+         </div>
+      </form>
+   </article>
+   <footer>Happy Flowers <span>&bull;</span> Chicago, IL</footer>
+   
+
+</body>
+</html>
+
